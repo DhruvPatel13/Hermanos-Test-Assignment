@@ -1,0 +1,231 @@
+/* bubble animation for hero  */
+.bubbles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+.bubbles > span {
+  position: absolute;
+  background: rgba(71, 139, 255, 0.15);
+  border-radius: 50%;
+  animation: moveShape 20s linear infinite;
+}
+.bubbles > span:nth-child(1) {
+  width: clamp(150px, 40vw, 300px);
+  height: clamp(150px, 40vw, 300px);
+  top: -20%;
+  left: -10%;
+  animation-delay: 0s;
+}
+.bubbles > span:nth-child(2) {
+  width: clamp(150px, 25vw, 300px);
+  height: clamp(150px, 25vw, 300px);
+  bottom: -20%;
+  left: 30%;
+  animation-delay: -5s;
+  animation-duration: 25s;
+}
+.bubbles > span:nth-child(3) {
+  width: clamp(70px, 16vw, 200px);
+  height: clamp(70px, 16vw, 200px);
+  top: -15%;
+  left: 50%;
+  animation-delay: -10s;
+  animation-duration: 30s;
+}
+@keyframes moveShape {
+  0% {
+    transform: rotate(0deg) translate(50px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translate(50px) rotate(-360deg);
+  }
+}
+
+/* morph shape animtion for hero */
+.hero_right > figure::before {
+  content: "";
+  position: absolute;
+  bottom: -20%;
+  right: -20%;
+  width: 120%;
+  height: 120%;
+  background: linear-gradient(145deg, #e6f0ff 0%, #f0f7ff 100%);
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  z-index: -1;
+  animation: morphShape 15s ease-in-out infinite;
+}
+.hero_right > figure::after {
+  content: "";
+  position: absolute;
+  bottom: -15%;
+  right: -15%;
+  width: 110%;
+  height: 110%;
+  background: linear-gradient(145deg, #f0f7ff 0%, #f8faff 100%);
+  border-radius: 70% 30% 30% 70% / 60% 40% 60% 40%;
+  z-index: -1;
+  animation: morphShape 15s ease-in-out infinite reverse;
+}
+@keyframes morphShape {
+  0%,
+  100% {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    transform: rotate(0deg);
+  }
+  50% {
+    border-radius: 70% 30% 30% 70% / 60% 40% 60% 40%;
+    transform: rotate(3deg);
+  }
+}
+
+/* Spinner animation */
+.spinner-container {
+  height: 0;
+  visibility: hidden;
+  height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+}
+.spinner_wrapper {
+  width: clamp(60px, 8vw, 80px);
+  height: clamp(60px, 8vw, 80px);
+  position: relative;
+  animation: spinner 2.5s infinite linear both;
+}
+
+.spinner_wrapper .dot {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  animation: dot 2s infinite ease-in-out both;
+}
+
+.spinner_wrapper .dot:before {
+  content: "";
+  display: block;
+  width: 25%;
+  height: 25%;
+  background-color: rgb(var(--primaryColor));
+  border-radius: 100%;
+  animation: dot_before 2s infinite ease-in-out both;
+}
+
+.dot:nth-child(1) {
+  animation-delay: -1.1s;
+}
+.dot:nth-child(2) {
+  animation-delay: -1s;
+}
+.dot:nth-child(3) {
+  animation-delay: -0.9s;
+}
+.dot:nth-child(4) {
+  animation-delay: -0.8s;
+}
+.dot:nth-child(5) {
+  animation-delay: -0.7s;
+}
+.dot:nth-child(6) {
+  animation-delay: -0.6s;
+}
+.dot:nth-child(1):before {
+  animation-delay: -1.1s;
+}
+.dot:nth-child(2):before {
+  animation-delay: -1s;
+}
+.dot:nth-child(3):before {
+  animation-delay: -0.9s;
+}
+.dot:nth-child(4):before {
+  animation-delay: -0.8s;
+}
+.dot:nth-child(5):before {
+  animation-delay: -0.7s;
+}
+.dot:nth-child(6):before {
+  animation-delay: -0.6s;
+}
+.spinner-container > .text {
+  text-align: center;
+  font-size: clamp(1rem, 2.3vw, 1.4rem);
+  position: relative;
+}
+.spinner-container > .text::after {
+  position: absolute;
+  content: "";
+  animation: loadingDots 2s infinite;
+  overflow: hidden;
+  width: 10%;
+}
+
+@keyframes spinner {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dot {
+  80%,
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dot_before {
+  50% {
+    transform: scale(0.4);
+  }
+  100%,
+  0% {
+    transform: scale(1);
+  }
+}
+
+@keyframes loadingDots {
+  0% {
+    content: ".";
+    width: auto;
+  }
+  25% {
+    content: "..";
+    width: auto;
+  }
+  50% {
+    content: "...";
+    width: auto;
+  }
+  75% {
+    content: "....";
+    width: auto;
+  }
+  100% {
+    content: ".";
+    width: auto;
+  }
+}
+/* active class */
+.spinner-container.active {
+  height: 100vh;
+  visibility: visible;
+}
+
+/* fadeIn animation for whole page  */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
